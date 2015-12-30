@@ -1,0 +1,45 @@
+#
+# build drupal dev environment
+#   - maridb
+#   - apachesolr
+#   - memcached
+#   - nginx + php5.6
+#   - mailcatcher
+#
+
+db:
+  image: mariadb:5.5
+  environment:
+    MYSQL_ROOT_PASSWORD: rootpasswd
+    MYSQL_DATABASE: drupal
+  volumes:
+    -  ./conf/mysql/conf.d:/etc/mysql/conf.d
+  ports:
+    - "3306"
+solr:
+  image: lopezs/drupal-solr
+  ports:
+    - "8983"
+
+web:
+  image: lopezs/drupal-nginx-php
+  ports:
+   - "8080:80"
+   - "443"
+   - "22"
+  volumes:
+   - ./app/:/app
+  links:
+   - db
+   - memcached
+   - solr
+   - mailcatcher
+
+memcached:
+  image: "memcached"
+
+mailcatcher:
+  image: lopezs/mailcatcher
+  ports:
+    - "1080"
+    - "1025"
