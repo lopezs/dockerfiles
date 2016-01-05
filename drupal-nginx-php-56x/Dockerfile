@@ -39,7 +39,8 @@ RUN sed -ir 's@^#@//@' /etc/php5/mods-available/*
 RUN apt-get update && \
     DEBIAN_FRONTEND="noninteractive" apt-get install --yes \
         git         \
-        php5-dev
+        php5-dev    \
+        pv
 
 # Xdebug
 ENV XDEBUG_VERSION='XDEBUG_2_3_3'
