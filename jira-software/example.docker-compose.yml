@@ -1,0 +1,20 @@
+version: '2'
+services:
+  db:
+    image: lopezs/postgres
+    volumes:
+      - "./.data/pgdata:/var/lib/postgresql/data/pgdata"
+    environment:
+      POSTGRES_DB: jira
+      POSTGRES_USER: jira
+      POSTGRES_PASSWORD: jira
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+
+  jira:
+    links:
+      - db
+    image: lopezs/jira-software
+    volumes:
+      - "./.data/jira-home:/opt/jira-home"
+    ports:
+      - "8081:8080"
