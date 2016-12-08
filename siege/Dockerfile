@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 MAINTAINER Lopez Shackleford <lopez.shackleford@gmail.com>
 
-ENV SIEGE_VERSION=${SIEGE_VERSION:-3.1.4}
+ENV SIEGE_VERSION=${SIEGE_VERSION:-4.0.2}
 ENV SIEGE_URL=http://download.joedog.org/siege/siege-$SIEGE_VERSION.tar.gz
 ENV SSL_PATH=${SSL_PATH:-/usr/lib/x86_64-linux-gnu}
 
